@@ -6,5 +6,6 @@ import unsm.archivo.entitys.usuario;
 
 public interface usuarioRepo extends JpaRepository<usuario, Integer>
 {
-	public usuario findByName(String name);
+	public usuario findByUsername (String name);
+	public usuario findByIdUser (Integer iduser);
 }
