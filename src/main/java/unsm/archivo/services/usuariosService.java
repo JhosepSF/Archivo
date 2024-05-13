@@ -48,6 +48,8 @@ public class usuariosService
 		cargos.add(cargo);
 		
 		nuevousuario.setCargoid(cargos);
+		
+		repousuario.save(nuevousuario);
 	}
 	
 	public List<usuarioDTO> verusuarios () 

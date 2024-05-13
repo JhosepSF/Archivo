@@ -7,6 +7,7 @@ public class usuarioDTO
     String lastname;
     String address;
     String cargoid;
+    
 	public Integer getId() {
 		return id;
 	}
