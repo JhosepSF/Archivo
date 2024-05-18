@@ -2,9 +2,9 @@ package unsm.archivo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import unsm.archivo.entitys.tipodoc;
+import unsm.archivo.entitys.Tipodoc;
 
-public interface tipodocrepo extends JpaRepository<tipodoc, Integer>
+public interface Tipodocrepo extends JpaRepository<Tipodoc, Integer>
 {
 
 }

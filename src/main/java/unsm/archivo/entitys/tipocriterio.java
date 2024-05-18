@@ -9,7 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class tipocriterio 
+public class Tipocriterio 
 {
 	@Id
 	@GeneratedValue
@@ -20,7 +20,7 @@ public class tipocriterio
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subcriteryid")
-    tipocriterio subcriteryid;
+    Tipocriterio subcriteryid;
 
 	public Integer getMainid() {
 		return mainid;
@@ -38,11 +38,11 @@ public class tipocriterio
 		this.criteryname = criteryname;
 	}
 
-	public tipocriterio getSubcriteryid() {
+	public Tipocriterio getSubcriteryid() {
 		return subcriteryid;
 	}
 
-	public void setSubcriteryid(tipocriterio subcriteryid) {
+	public void setSubcriteryid(Tipocriterio subcriteryid) {
 		this.subcriteryid = subcriteryid;
 	}
 }

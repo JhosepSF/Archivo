@@ -2,9 +2,9 @@ package unsm.archivo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import unsm.archivo.entitys.tipocriterio;
+import unsm.archivo.entitys.Tipocriterio;
 
-public interface tipocriteriorepo extends JpaRepository<tipocriterio, Integer>
+public interface Tipocriteriorepo extends JpaRepository<Tipocriterio, Integer>
 {
 
 }

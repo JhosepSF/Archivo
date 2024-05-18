@@ -9,30 +9,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import unsm.archivo.DTO.usuarioDTO;
-import unsm.archivo.entitys.cargo;
-import unsm.archivo.entitys.usuario;
-import unsm.archivo.repository.cargoRepo;
-import unsm.archivo.repository.usuarioRepo;
-import unsm.archivo.request.usuariorequest;
+import unsm.archivo.DTO.UsuarioDTO;
+import unsm.archivo.entitys.Cargo;
+import unsm.archivo.entitys.Usuario;
+import unsm.archivo.repository.CargoRepo;
+import unsm.archivo.repository.UsuarioRepo;
+import unsm.archivo.request.Usuariorequest;
 
 @Service
-public class usuariosService 
+public class UsuariosService 
 {
 	@Autowired
-	usuarioRepo repousuario;
+	UsuarioRepo repousuario;
 	
 	@Autowired
-	cargoRepo repocargo;
+	CargoRepo repocargo;
 	
 	@Autowired
     private PasswordEncoder passwordEncoder;
 	
-	public void nuevousuario (usuariorequest usuario) 
+	public void nuevousuario (Usuariorequest usuario) 
 	{
 		String encoded = passwordEncoder.encode(usuario.getPassword());
 		
-		usuario nuevousuario = new usuario();
+		Usuario nuevousuario = new Usuario();
 		
 		nuevousuario.setName(usuario.getName());
 		nuevousuario.setLastname(usuario.getLastname());
@@ -40,33 +40,33 @@ public class usuariosService
 		nuevousuario.setPassword(encoded);
 		nuevousuario.setUsername(usuario.getUsername());
 		
-		Set<cargo> cargos = new HashSet<>();
+		Set<Cargo> Cargos = new HashSet<>();
 		
-		cargo cargo = repocargo.findById(usuario.getCargoid())
+		Cargo Cargo = repocargo.findById(usuario.getCargoid())
                 .orElseThrow(() -> new RuntimeException("Cargo no encontrado"));
 		
-		cargos.add(cargo);
+		Cargos.add(Cargo);
 		
-		nuevousuario.setCargoid(cargos);
+		nuevousuario.setCargos(Cargos);
 		
 		repousuario.save(nuevousuario);
 	}
 	
-	public List<usuarioDTO> verusuarios () 
+	public List<UsuarioDTO> verusuarios () 
 	{
-		List <usuario> usuarios = repousuario.findAll();
+		List <Usuario> Usuarios = repousuario.findAll();
 		
-		List <usuarioDTO> usuariosdto = new ArrayList<>();
+		List <UsuarioDTO> usuariosdto = new ArrayList<>();
 		
-		for (usuario user : usuarios) 
+		for (Usuario user : Usuarios) 
 		{
 			String cargoName = "";
-		    if (user.getCargoid() != null && !user.getCargoid().isEmpty()) {
-		        cargo cargo = user.getCargoid().iterator().next();
-		        cargoName = cargo.getName();
+		    if (user.getCargos() != null && !user.getCargos().isEmpty()) {
+		        Cargo Cargo = user.getCargos().iterator().next();
+		        cargoName = Cargo.getName();
 		    }
 		    
-		    usuarioDTO dto = new usuarioDTO(
+		    UsuarioDTO dto = new UsuarioDTO(
 		    								user.getId(),
 		    								user.getName(),
 		    								user.getLastname(), 
@@ -78,17 +78,17 @@ public class usuariosService
 		return usuariosdto;
 	}
 	
-	public usuarioDTO verusuario (Integer iduser) 
+	public UsuarioDTO verusuario (Integer iduser) 
 	{
-		usuario user = repousuario.findByIdUser(iduser);
+		Usuario user = repousuario.findbyIdUser(iduser);
 		
 		String cargoName = "";
-	    if (user.getCargoid() != null && !user.getCargoid().isEmpty()) {
-	        cargo cargo = user.getCargoid().iterator().next();
-	        cargoName = cargo.getName();
+	    if (user.getCargos() != null && !user.getCargos().isEmpty()) {
+	        Cargo Cargo = user.getCargos().iterator().next();
+	        cargoName = Cargo.getName();
 	    }
 	    
-	    usuarioDTO dto = new usuarioDTO(
+	    UsuarioDTO dto = new UsuarioDTO(
 	    								user.getId(),
 	    								user.getName(),
 	    								user.getLastname(), 

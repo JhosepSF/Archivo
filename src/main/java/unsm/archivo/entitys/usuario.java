@@ -1,20 +1,33 @@
 package unsm.archivo.entitys;
 
+import java.util.Collection;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-public class usuario
+@Table(name = "usuarios", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
+public class Usuario implements UserDetails
 {
-    @Id
+
+	@Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     Integer idUser;
     
     @Column
@@ -24,9 +37,25 @@ public class usuario
     String username;
     String password;
     
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = cargo.class, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Cargo.class, cascade = CascadeType.MERGE)
 	@JoinTable(name = "Usuario_Cargo", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name="id_cargo"))
-	private Set<cargo> cargoid;
+	private Set<Cargo> Cargos;
+	
+	
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return Cargos.stream().map(cargo -> new SimpleGrantedAuthority(cargo.getName())).collect(Collectors.toList());
+	}
+	
+	public Set<Cargo> getCargos() {
+		return Cargos;
+	}
+
+	public void setCargos(Set<Cargo> Cargos) {
+		this.Cargos = Cargos;
+	}
 
 	public Integer getId() {
 		return idUser;
@@ -60,13 +89,6 @@ public class usuario
 		this.address = address;
 	}
 
-	public Set<cargo> getCargoid() {
-		return cargoid;
-	}
-
-	public void setCargoid(Set<cargo> cargoid) {
-		this.cargoid = cargoid;
-	}
 
 	public String getUsername() {
 		return username;
@@ -82,5 +104,33 @@ public class usuario
 
 	public void setPassword(String password) {
 		this.password = password;
-	}	
+	}
+
+	
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return	true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+		
 }

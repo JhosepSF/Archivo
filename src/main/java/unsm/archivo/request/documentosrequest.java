@@ -1,14 +1,14 @@
 package unsm.archivo.request;
 
-public class documentosrequest 
+public class Documentosrequest 
 {
 	String titulo;
 	String estado;
 	String fecha;
 	Integer duracion;
 	String vencimiento;
-	String idtipo;
-	String idtipocriterio;
+	Integer idtipo;
+	Integer idtipocriterio;
 	
 	public String getTitulo() {
 		return titulo;
@@ -40,16 +40,16 @@ public class documentosrequest
 	public void setVencimiento(String vencimiento) {
 		this.vencimiento = vencimiento;
 	}
-	public String getIdtipo() {
+	public Integer getIdtipo() {
 		return idtipo;
 	}
-	public void setIdtipo(String idtipo) {
+	public void setIdtipo(Integer idtipo) {
 		this.idtipo = idtipo;
 	}
-	public String getIdtipocriterio() {
+	public Integer getIdtipocriterio() {
 		return idtipocriterio;
 	}
-	public void setIdtipocriterio(String idtipocriterio) {
+	public void setIdtipocriterio(Integer idtipocriterio) {
 		this.idtipocriterio = idtipocriterio;
 	}
 	

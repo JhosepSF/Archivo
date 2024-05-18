@@ -1,6 +1,6 @@
 package unsm.archivo.request;
 
-public class tipodocrequest
+public class Tipodocrequest
 {
 	String tiponame;
 

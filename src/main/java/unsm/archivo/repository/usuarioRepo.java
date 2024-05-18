@@ -1,11 +1,13 @@
 package unsm.archivo.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import unsm.archivo.entitys.usuario;
+import unsm.archivo.entitys.Usuario;
 
-public interface usuarioRepo extends JpaRepository<usuario, Integer>
+public interface UsuarioRepo extends JpaRepository<Usuario, Integer>
 {
-	public usuario findByUsername (String name);
-	public usuario findByIdUser (Integer iduser);
+	Optional <Usuario> findByUsername (String username);
+	Usuario findbyIdUser (Integer iduser);
 }

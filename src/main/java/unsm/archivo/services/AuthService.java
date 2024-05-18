@@ -5,23 +5,24 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import com.proyecto.marketin.controller.AuthResponse;
 
-import unsm.archivo.repository.usuarioRepo;
+import unsm.archivo.repository.UsuarioRepo;
+import unsm.archivo.request.AuthResponse;
 import unsm.archivo.request.LoginRequest;
-import unsm.archivo.entitys.usuario;
+import unsm.archivo.entitys.Usuario;
+
 
 @Service
 public class AuthService 
 {	
-	private usuarioRepo usuario;
+	private UsuarioRepo usuario;
 	private JwtService jwtService;
 	private AuthenticationManager authenticationManager;
 
 	public AuthResponse login(LoginRequest request) 
 	{
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-		usuario usua = usuario.findByUsername(request.getUsername());
+		Usuario usua = usuario.findByUsername(request.getUsername()).orElseThrow();
 		AuthResponse authResponse = new AuthResponse();
 	    authResponse.setToken(jwtService.getToken((UserDetails) usua));
 	    return authResponse; 

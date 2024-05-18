@@ -1,6 +1,6 @@
 package unsm.archivo.DTO;
 
-public class usuarioDTO 
+public class UsuarioDTO 
 {
 	Integer id;
     String name;
@@ -38,7 +38,7 @@ public class usuarioDTO
 	public void setCargoid(String cargoid) {
 		this.cargoid = cargoid;
 	}
-	public usuarioDTO(Integer id, String name, String lastname, String address, String cargoid) {
+	public UsuarioDTO(Integer id, String name, String lastname, String address, String cargoid) {
 		super();
 		this.id = id;
 		this.name = name;

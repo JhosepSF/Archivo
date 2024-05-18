@@ -2,9 +2,9 @@ package unsm.archivo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import unsm.archivo.entitys.cargo;
+import unsm.archivo.entitys.Cargo;
 
-public interface cargoRepo extends JpaRepository<cargo, Integer>
+public interface CargoRepo extends JpaRepository<Cargo, Integer>
 {
 
 }
