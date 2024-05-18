@@ -11,7 +11,6 @@ import unsm.archivo.repository.usuarioRepo;
 import unsm.archivo.request.LoginRequest;
 import unsm.archivo.entitys.usuario;
 
-
 @Service
 public class AuthService 
 {	
