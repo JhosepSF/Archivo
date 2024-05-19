@@ -17,7 +17,7 @@ import unsm.archivo.repository.UsuarioRepo;
 import unsm.archivo.request.Usuariorequest;
 
 @Service
-public class UsuariosService 
+public class UsuarioService 
 {
 	@Autowired
 	UsuarioRepo repousuario;
