@@ -38,6 +38,12 @@ public class WebSecurityConfig
 	        						"/v1/css/**",
 	        						"/css/**", "/flags/**","/images/**","/plugins/**","/fonts/**"
 	        					).permitAll();
+							authRequest.requestMatchers
+							("/documentos/**", "/tipocriterio/**","/tipodocumento/**","/usuario/**")
+							.hasAuthority("ADMINISTRADOR");
+							authRequest.requestMatchers("/auth/v2/**").hasAnyAuthority("CAJERO","ADMINISTRADOR");
+							authRequest.requestMatchers("/auth/v3/**").hasAnyAuthority("ALMACENERO","ADMINISTRADOR");
+							authRequest.anyRequest().authenticated();
 							})
 					.formLogin(login -> login	
 							.loginPage("/login")
