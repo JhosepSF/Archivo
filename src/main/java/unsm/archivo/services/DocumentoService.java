@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import unsm.archivo.entitys.Documento;
 import unsm.archivo.entitys.Tipocriterio;
@@ -14,6 +15,7 @@ import unsm.archivo.repository.TipocriterioRepo;
 import unsm.archivo.repository.TipodocRepo;
 import unsm.archivo.request.DocumentosRequest;
 
+@Service
 public class DocumentoService 
 {
     @Autowired

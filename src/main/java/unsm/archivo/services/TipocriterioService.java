@@ -3,11 +3,13 @@ package unsm.archivo.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import unsm.archivo.entitys.Tipocriterio;
 import unsm.archivo.repository.TipocriterioRepo;
 import unsm.archivo.request.TipocriterioRequest;
 
+@Service
 public class TipocriterioService 
 {
     @Autowired

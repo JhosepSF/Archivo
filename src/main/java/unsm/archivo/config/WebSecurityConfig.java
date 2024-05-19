@@ -14,7 +14,8 @@ import unsm.archivo.jwt.JwtAuthenticationFilter;
 @Configuration
 @EnableWebSecurity
 
-public class WebSecurityConfig {
+public class WebSecurityConfig
+{
 	
 	public WebSecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter, AuthenticationProvider authProvider) {
 		super();
@@ -22,10 +23,8 @@ public class WebSecurityConfig {
 		this.authProvider = authProvider;
 	}
 
-
 	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 	private final  AuthenticationProvider authProvider;
-	
 	
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception{

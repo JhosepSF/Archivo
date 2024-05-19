@@ -3,11 +3,13 @@ package unsm.archivo.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import unsm.archivo.entitys.Cargo;
 import unsm.archivo.repository.CargoRepo;
 import unsm.archivo.request.CargoRequest;
 
+@Service
 public class CargoService
 {
     @Autowired

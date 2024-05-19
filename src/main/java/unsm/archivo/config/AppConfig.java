@@ -13,9 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import unsm.archivo.repository.UsuarioRepo;
 
-
-
-
 @Configuration
 
 public class AppConfig {
