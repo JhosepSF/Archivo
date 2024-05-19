@@ -1,6 +1,6 @@
 package unsm.archivo.request;
 
-public class Usuariorequest
+public class UsuarioRequest
 {
 	String name;
     String lastname;

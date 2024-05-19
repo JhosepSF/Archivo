@@ -15,9 +15,16 @@ import unsm.archivo.entitys.Usuario;
 @Service
 public class AuthService 
 {	
-	private UsuarioRepo usuario;
-	private JwtService jwtService;
-	private AuthenticationManager authenticationManager;
+	private final UsuarioRepo usuario;
+	private final JwtService jwtService;
+	private final AuthenticationManager authenticationManager;
+	
+	public AuthService(UsuarioRepo usuario, JwtService jwtService, AuthenticationManager authenticationManager) {
+		super();
+		this.usuario = usuario;
+		this.jwtService = jwtService;
+		this.authenticationManager = authenticationManager;
+	}
 
 	public AuthResponse login(LoginRequest request) 
 	{

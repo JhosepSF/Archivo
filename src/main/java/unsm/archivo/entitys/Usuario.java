@@ -28,7 +28,7 @@ public class Usuario implements UserDetails
 
 	@Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    Integer idUser;
+    Integer id;
     
     @Column
     String name;
@@ -58,11 +58,11 @@ public class Usuario implements UserDetails
 	}
 
 	public Integer getId() {
-		return idUser;
+		return id;
 	}
 
 	public void setId(Integer id) {
-		this.idUser = id;
+		this.id = id;
 	}
 
 	public String getName() {

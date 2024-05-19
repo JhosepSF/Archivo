@@ -1,6 +1,6 @@
 package unsm.archivo.request;
 
-public class Cargorequest
+public class CargoRequest
 {
 	String name;
 

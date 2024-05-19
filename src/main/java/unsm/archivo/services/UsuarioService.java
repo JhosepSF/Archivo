@@ -14,7 +14,7 @@ import unsm.archivo.entitys.Cargo;
 import unsm.archivo.entitys.Usuario;
 import unsm.archivo.repository.CargoRepo;
 import unsm.archivo.repository.UsuarioRepo;
-import unsm.archivo.request.Usuariorequest;
+import unsm.archivo.request.UsuarioRequest;
 
 @Service
 public class UsuarioService 
@@ -28,7 +28,7 @@ public class UsuarioService
 	@Autowired
     private PasswordEncoder passwordEncoder;
 	
-	public void nuevousuario (Usuariorequest usuario) 
+	public void nuevousuario (UsuarioRequest usuario) 
 	{
 		String encoded = passwordEncoder.encode(usuario.getPassword());
 		
@@ -78,9 +78,9 @@ public class UsuarioService
 		return usuariosdto;
 	}
 	
-	public UsuarioDTO verusuario (Integer iduser) 
+	public UsuarioDTO verusuario (Integer id) 
 	{
-		Usuario user = repousuario.findbyIdUser(iduser);
+		Usuario user = repousuario.findById(id).orElseThrow(() -> new RuntimeException("Cargo no encontrado"));
 		
 		String cargoName = "";
 	    if (user.getCargos() != null && !user.getCargos().isEmpty()) {

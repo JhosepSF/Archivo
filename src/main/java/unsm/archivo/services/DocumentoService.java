@@ -9,43 +9,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import unsm.archivo.entitys.Documento;
 import unsm.archivo.entitys.Tipocriterio;
 import unsm.archivo.entitys.Tipodoc;
-import unsm.archivo.repository.Documentorepo;
-import unsm.archivo.repository.Tipocriteriorepo;
-import unsm.archivo.repository.Tipodocrepo;
-import unsm.archivo.request.Documentosrequest;
+import unsm.archivo.repository.DocumentoRepo;
+import unsm.archivo.repository.TipocriterioRepo;
+import unsm.archivo.repository.TipodocRepo;
+import unsm.archivo.request.DocumentosRequest;
 
 public class DocumentoService 
 {
     @Autowired
-    Documentorepo documentorepo;
+    DocumentoRepo documentorepo;
 
     @Autowired
-    Tipocriteriorepo criterio;
+    TipocriterioRepo criterio;
 
     @Autowired
-    Tipodocrepo tipodoc;
+    TipodocRepo tipodoc;
 
-    public void nuevoDocumento(Documentosrequest documentosrequest)
+    public void nuevoDocumento(DocumentosRequest documentosRequest)
     {
         Documento doc = new Documento();
-        doc.setTitulo(documentosrequest.getTitulo());
-        doc.setEstado(documentosrequest.getEstado());
-        doc.setDuracion(documentosrequest.getDuracion());
+        doc.setTitulo(documentosRequest.getTitulo());
+        doc.setEstado(documentosRequest.getEstado());
+        doc.setDuracion(documentosRequest.getDuracion());
 
         DateTimeFormatter formatear = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-	    LocalDate fecha = LocalDate.parse(documentosrequest.getFecha(), formatear);
+	    LocalDate fecha = LocalDate.parse(documentosRequest.getFecha(), formatear);
         doc.setFecha(fecha);
 
-        LocalDate vencimiento = LocalDate.parse(documentosrequest.getVencimiento(), formatear);
+        LocalDate vencimiento = LocalDate.parse(documentosRequest.getVencimiento(), formatear);
         doc.setVencimiento(vencimiento);
 
-        Tipocriterio tipocriterio = criterio.findById(documentosrequest.getIdtipocriterio())
-        .orElseThrow(() -> new IllegalArgumentException("Invalid Criterio Id:" + documentosrequest.getIdtipocriterio()));
+        Tipocriterio tipocriterio = criterio.findById(documentosRequest.getIdtipocriterio())
+        .orElseThrow(() -> new IllegalArgumentException("Invalid Criterio Id:" + documentosRequest.getIdtipocriterio()));
         doc.setIdtipocriterio(tipocriterio);
 
-        Tipodoc tipodocumento = tipodoc.findById(documentosrequest.getIdtipo())
-        .orElseThrow(() -> new IllegalArgumentException("Invalid Criterio Id:" + documentosrequest.getIdtipo()));
+        Tipodoc tipodocumento = tipodoc.findById(documentosRequest.getIdtipo())
+        .orElseThrow(() -> new IllegalArgumentException("Invalid Criterio Id:" + documentosRequest.getIdtipo()));
         doc.setIdtipo(tipodocumento);
 
         documentorepo.save(doc);

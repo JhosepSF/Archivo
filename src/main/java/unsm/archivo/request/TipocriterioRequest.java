@@ -1,6 +1,6 @@
 package unsm.archivo.request;
 
-public class Tipocriteriorequest 
+public class TipocriterioRequest 
 {
 	String criteryname;
 	Integer subcriteryid;

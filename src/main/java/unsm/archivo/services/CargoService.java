@@ -6,18 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import unsm.archivo.entitys.Cargo;
 import unsm.archivo.repository.CargoRepo;
-import unsm.archivo.request.Cargorequest;
+import unsm.archivo.request.CargoRequest;
 
 public class CargoService
 {
     @Autowired
     CargoRepo cargorepo;
 
-    public void nuevoCargo(Cargorequest cargorequest)
+    public void nuevoCargo(CargoRequest cargoRequest)
     {
         Cargo cargo = new Cargo();
 
-        cargo.setName(cargorequest.getName());
+        cargo.setName(cargoRequest.getName());
 
         cargorepo.save(cargo);
     }

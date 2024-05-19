@@ -5,22 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import unsm.archivo.entitys.Tipocriterio;
-import unsm.archivo.repository.Tipocriteriorepo;
-import unsm.archivo.request.Tipocriteriorequest;
+import unsm.archivo.repository.TipocriterioRepo;
+import unsm.archivo.request.TipocriterioRequest;
 
 public class TipocriterioService 
 {
     @Autowired
-    Tipocriteriorepo tipocriteriorepo;
+    TipocriterioRepo tipocriterioRepo;
 
-    public void nuevoTipocriterio(Tipocriteriorequest tipocriterio)
+    public void nuevoTipocriterio(TipocriterioRequest tipocriterio)
     {
         Tipocriterio criterio = new Tipocriterio();
         criterio.setCriteryname(tipocriterio.getCriteryname());
 
         if (tipocriterio.getSubcriteryid() != null && tipocriterio.getSubcriteryid() != 0)
         {
-            Tipocriterio subcritery = tipocriteriorepo.findById(tipocriterio.getSubcriteryid()).get();
+            Tipocriterio subcritery = tipocriterioRepo.findById(tipocriterio.getSubcriteryid()).get();
             criterio.setSubcriteryid(subcritery);
         }
         else
@@ -28,16 +28,16 @@ public class TipocriterioService
             criterio.setSubcriteryid(null);
         }
         
-        tipocriteriorepo.save(criterio);
+        tipocriterioRepo.save(criterio);
     }
 
     public List<Tipocriterio> getTipocriterios()
     {
-        return tipocriteriorepo.findAll();
+        return tipocriterioRepo.findAll();
     }
     
     public Tipocriterio VerUnTipoCriterio(Integer id)
     {
-        return tipocriteriorepo.findById(id).get();
+        return tipocriterioRepo.findById(id).get();
     }
 }

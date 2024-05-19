@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import unsm.archivo.entitys.Tipodoc;
 
-public interface Tipodocrepo extends JpaRepository<Tipodoc, Integer>
+public interface TipodocRepo extends JpaRepository<Tipodoc, Integer>
 {
 
 }

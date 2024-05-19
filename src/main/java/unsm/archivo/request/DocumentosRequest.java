@@ -1,6 +1,6 @@
 package unsm.archivo.request;
 
-public class Documentosrequest 
+public class DocumentosRequest 
 {
 	String titulo;
 	String estado;

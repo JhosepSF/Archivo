@@ -24,13 +24,13 @@ public class JwtService {
 	
 	private static final String SECRET_KEY="586E3272357538782F413F4428472B4B6250655368566B597033733676397924";
 	
-	public String getToken(UserDetails empleado) {
+	public String getToken(UserDetails usuario) {
 
-		return getToken(new HashMap<>(), empleado);
+		return getToken(new HashMap<>(), usuario);
 	}
 
-	private String getToken(Map <String, Object> extraClaims, UserDetails empleado) {
-		Collection<? extends GrantedAuthority> authorities = empleado.getAuthorities();
+	private String getToken(Map <String, Object> extraClaims, UserDetails usuario) {
+		Collection<? extends GrantedAuthority> authorities = usuario.getAuthorities();
 		String firstAuthority = null;
 
 		if (!authorities.isEmpty()) {
@@ -42,7 +42,7 @@ public class JwtService {
 		return Jwts
 				.builder()
 				.setClaims(extraClaims)
-				.setSubject(empleado.getUsername())
+				.setSubject(usuario.getUsername())
 				.claim("rol", firstAuthority)
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis()+1000*60*30))

@@ -5,29 +5,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import unsm.archivo.entitys.Tipodoc;
-import unsm.archivo.repository.Tipodocrepo;
-import unsm.archivo.request.Tipodocrequest;
+import unsm.archivo.repository.TipodocRepo;
+import unsm.archivo.request.TipodocRequest;
 
 public class TipodocumentoService 
 {
     @Autowired
-    Tipodocrepo tipodocrepo;
+    TipodocRepo tipodocRepo;
     
-    public void nuevoTipodoc(Tipodocrequest tipodoc)
+    public void nuevoTipodoc(TipodocRequest tipodoc)
     {
         Tipodoc tipo = new Tipodoc();
         tipo.setTiponame(tipodoc.getTiponame());
 
-        tipodocrepo.save(tipo);
+        tipodocRepo.save(tipo);
     }
 
     public List<Tipodoc> verTipodoc()
     {
-        return tipodocrepo.findAll();
+        return tipodocRepo.findAll();
     }
 
     public Tipodoc verUnTipodoc(Integer idtipodoc)
     {
-        return tipodocrepo.findById(idtipodoc).get();
+        return tipodocRepo.findById(idtipodoc).get();
     }
 }
