@@ -24,13 +24,10 @@ public class DataInitializer
     {
         return args ->
         {
-        	
-            
-           
-            
             Cargo administrador = new Cargo();
             administrador.setName("ADMINISTRADOR");
             rolRepository.save(administrador);
+            
             Usuario usuario = new Usuario();
             Set<Cargo> cargos = new HashSet<>();
     		Cargo cargo = rolRepository.findByName("ADMINISTRADOR").orElseThrow(() -> new RuntimeException("Cargo no encontrado"));
@@ -42,9 +39,6 @@ public class DataInitializer
             usuario.setPassword(passwordEncoder.encode("123456"));
             usuario.setCargos(cargos);
             usuarioRepository.save(usuario);
-            
         };
     }
-}
-
-*/
+}*/

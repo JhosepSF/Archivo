@@ -15,18 +15,25 @@ import unsm.archivo.repository.UsuarioRepo;
 
 @RestController
 @RequestMapping("/auth")
-public class AuthRestController {
+public class AuthRestController 
+{
 	private final AuthService authService;
 	private final UsuarioRepo usuarioRepository;
 	
-	public AuthRestController(AuthService authService, UsuarioRepo usuarioRepository) {
+	public AuthRestController(AuthService authService, UsuarioRepo usuarioRepo) 
+	{
 		super();
 		this.authService = authService;
-		this.usuarioRepository = usuarioRepository;
+		this.usuarioRepository = usuarioRepo;
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity <AuthResponse> login(@RequestBody LoginRequest request){
+	public ResponseEntity <AuthResponse> login(@RequestBody LoginRequest request)
+	{
 		return ResponseEntity.ok(authService.login(request));
+	}
+
+	public UsuarioRepo getUsuarioRepository() {
+		return usuarioRepository;
 	}
 }

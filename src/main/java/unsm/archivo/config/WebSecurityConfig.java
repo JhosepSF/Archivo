@@ -13,51 +13,35 @@ import unsm.archivo.jwt.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
-
 public class WebSecurityConfig
 {
+	private final JwtAuthenticationFilter jwtAuthenticationFilter;
+	private final AuthenticationProvider authProvider;
 	
 	public WebSecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter, AuthenticationProvider authProvider) {
 		super();
 		this.jwtAuthenticationFilter = jwtAuthenticationFilter;
 		this.authProvider = authProvider;
 	}
-
-	private final JwtAuthenticationFilter jwtAuthenticationFilter;
-	private final  AuthenticationProvider authProvider;
 	
 	@Bean
-	SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-		
+	SecurityFilterChain filterChain(HttpSecurity http) throws Exception
+	{
 			return http
 					.csrf(csrf -> csrf
 							.disable())
 					.authorizeHttpRequests(authRequest -> {
-							authRequest.requestMatchers("/auth/**",
-	        						"/js/**",
-	        						"/v1/css/**",
-	        						"/css/**", "/flags/**","/images/**","/plugins/**","/fonts/**"
-	        					).permitAll();
+							authRequest.requestMatchers("/auth/**").permitAll();
 							authRequest.requestMatchers
 							("/documentos/**", "/tipocriterio/**","/tipodocumento/**","/usuario/**")
 							.hasAuthority("ADMINISTRADOR");
-							authRequest.requestMatchers("/auth/v2/**").hasAnyAuthority("CAJERO","ADMINISTRADOR");
-							authRequest.requestMatchers("/auth/v3/**").hasAnyAuthority("ALMACENERO","ADMINISTRADOR");
 							authRequest.anyRequest().authenticated();
 							})
-					.formLogin(login -> login	
-							.loginPage("/login")
-							.defaultSuccessUrl("/index")
-				            .failureUrl("/login?error=true")
-							.permitAll()
-			                )
 					
 					.sessionManagement(sessionManager -> sessionManager
 							.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
 					.authenticationProvider(authProvider)
 					.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
 					.build();
-				
 	}
-
 }
