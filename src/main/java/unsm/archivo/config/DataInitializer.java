@@ -13,8 +13,6 @@ import unsm.archivo.entitys.Usuario;
 import unsm.archivo.repository.CargoRepo;
 import unsm.archivo.repository.UsuarioRepo;
 
-
-
 @Configuration
 public class DataInitializer 
 {

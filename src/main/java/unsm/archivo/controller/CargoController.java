@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import unsm.archivo.entitys.Cargo;
 import unsm.archivo.request.CargoRequest;
@@ -32,7 +33,7 @@ public class CargoController
     }
 
     @PostMapping("/nuevocargo")
-    public void nuevocargo(CargoRequest cargo)
+    public void nuevocargo(@RequestBody CargoRequest cargo)
     {
         cargoService.nuevoCargo(cargo);
     }
