@@ -20,6 +20,7 @@ public class WebConfig {
                 .allowedOrigins("http://localhost:5173")
                 .allowedMethods("*")
                 .allowedHeaders("*")
+                .exposedHeaders("Authorization")
                 .allowCredentials(true);
             }
         };

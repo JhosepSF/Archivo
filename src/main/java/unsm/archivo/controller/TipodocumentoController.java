@@ -9,32 +9,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import unsm.archivo.entitys.Tipocriterio;
-import unsm.archivo.request.TipocriterioRequest;
-import unsm.archivo.services.TipocriterioService;
+import unsm.archivo.entitys.Tipodoc;
+import unsm.archivo.request.TipodocRequest;
+import unsm.archivo.services.TipodocumentoService;
 
 @RestController
 @RequestMapping("/tipodocumento")
 public class TipodocumentoController
 {
     @Autowired
-    TipocriterioService tipocriterioService;
+    TipodocumentoService tipodoc;
     
-    @GetMapping("/tipocriterios")
-    public List<Tipocriterio> getTipocriterios()
+    @GetMapping("/tipodocumentos")
+    public List<Tipodoc> getTipocriterios()
     {
-        return tipocriterioService.getTipocriterios();
+        return tipodoc.verTipodoc();
     }
 
-    @GetMapping("/tipocriterio")
-    public Tipocriterio VerUnTipoCriterio(Integer id)
+    @GetMapping("/tipodocumento")
+    public Tipodoc VerUnTipoCriterio(Integer id)
     {
-        return tipocriterioService.VerUnTipoCriterio(id);
+        return tipodoc.verUnTipodoc(id);
     }
 
-    @PostMapping("/nuevocriterio")
-    public void nuevoCriterio(@RequestBody TipocriterioRequest tipocriterio)
+    @PostMapping("/nuevotipodocumento")
+    public void nuevoCriterio(@RequestBody TipodocRequest tipo)
     {
-        tipocriterioService.nuevoTipocriterio(tipocriterio);
+        tipodoc.nuevoTipodoc(tipo);
     }
 }

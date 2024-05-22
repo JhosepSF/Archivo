@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -14,8 +13,7 @@ import jakarta.persistence.ManyToOne;
 public class Documento 
 {
 	@Id
-	@GeneratedValue
-	Integer iddoc;
+	String nrodoc;
 	
 	@Column
 	String titulo;
@@ -33,11 +31,11 @@ public class Documento
 	Tipocriterio idtipocriterio;
 
 
-	public Integer getIddoc() {
-		return iddoc;
+	public String getNrodoc() {
+		return nrodoc;
 	}
-	public void setIddoc(Integer iddoc) {
-		this.iddoc = iddoc;
+	public void setNrodoc(String doc) {
+		this.nrodoc = doc;
 	}
 	public String getTitulo() {
 		return titulo;

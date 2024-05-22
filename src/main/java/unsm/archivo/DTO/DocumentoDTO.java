@@ -1,6 +1,6 @@
-package unsm.archivo.request;
+package unsm.archivo.DTO;
 
-public class DocumentosRequest 
+public class DocumentoDTO
 {
 	String nrodoc;
 	String titulo;
@@ -8,9 +8,9 @@ public class DocumentosRequest
 	String fecha;
 	Integer duracion;
 	String vencimiento;
-	Integer idtipo;
-	Integer idtipocriterio;
-		
+	String tipodocumento;
+	String tipocriterio;
+	
 	public String getNrodoc() {
 		return nrodoc;
 	}
@@ -47,17 +47,16 @@ public class DocumentosRequest
 	public void setVencimiento(String vencimiento) {
 		this.vencimiento = vencimiento;
 	}
-	public Integer getIdtipo() {
-		return idtipo;
+	public String getTipodocumento() {
+		return tipodocumento;
 	}
-	public void setIdtipo(Integer idtipo) {
-		this.idtipo = idtipo;
+	public void setTipodocumento(String tipodocumento) {
+		this.tipodocumento = tipodocumento;
 	}
-	public Integer getIdtipocriterio() {
-		return idtipocriterio;
+	public String getTipocriterio() {
+		return tipocriterio;
 	}
-	public void setIdtipocriterio(Integer idtipocriterio) {
-		this.idtipocriterio = idtipocriterio;
+	public void setTipocriterio(String tipocriterio) {
+		this.tipocriterio = tipocriterio;
 	}
-	
 }
