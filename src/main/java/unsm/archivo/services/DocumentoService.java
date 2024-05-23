@@ -143,5 +143,35 @@ public class DocumentoService
     	}
     	return documentosdto;
     }
+    
+    public List<DocumentoDTO> verDocumentosporCriterioMayor(Integer idcriterio)
+    {
+        Tipocriterio tipocriterio = criterio.findById(idcriterio)
+                            .orElseThrow(()->new RuntimeException("No se encontro el criterio"));
+        
+        List<Tipocriterio> subcriterios = criterio.findBySubcriteryid(tipocriterio);
+        List<Documento> documentos = new ArrayList<>();
+        List<DocumentoDTO> documentosdto = new ArrayList<>();
+        
+        for(Tipocriterio subcriterio : subcriterios) 
+        {
+        	documentos = documentorepo.findByIdtipocriterio(subcriterio);
+        	
+        	for (Documento documento : documentos) 
+        	{
+        		DocumentoDTO documentoDTO = new DocumentoDTO();
+        	    documentoDTO.setNrodoc(documento.getNrodoc());
+        	    documentoDTO.setTitulo(documento.getTitulo());
+        	    documentoDTO.setEstado(documento.getEstado());
+        	    documentoDTO.setFecha(documento.getFecha().toString());
+        	    documentoDTO.setDuracion(documento.getDuracion());
+        	    documentoDTO.setVencimiento(documento.getVencimiento().toString()); 
+        	    documentoDTO.setTipodocumento(documento.getIdtipo().getTiponame()); 
+        	    documentoDTO.setTipocriterio(documento.getIdtipocriterio().getCriteryname());
+        	    documentosdto.add(documentoDTO);
+        	}
+        }
+    	return documentosdto;
+    }
 
 }
