@@ -42,4 +42,14 @@ public class TipocriterioService
     {
         return tipocriterioRepo.findById(id).get();
     }
+    
+    public List<Tipocriterio> getTipocriterioMayor(Integer idcriterio)
+    {
+    	Tipocriterio tipocriterio = tipocriterioRepo.findById(idcriterio)
+                .orElseThrow(()->new RuntimeException("No se encontro el criterio"));
+    	
+    	List<Tipocriterio> criterios = tipocriterioRepo.findBySubcriteryid(tipocriterio);
+    	
+    	return criterios;
+    }
 }

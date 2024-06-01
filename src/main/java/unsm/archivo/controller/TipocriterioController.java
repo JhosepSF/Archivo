@@ -32,6 +32,12 @@ public class TipocriterioController
     {
         return tipocriterioService.VerUnTipoCriterio(id);
     }
+    
+    @GetMapping("/criteriomayor/{id}")
+    public List<Tipocriterio> getCriterioMayor(@PathVariable Integer id)
+    {
+    	return tipocriterioService.getTipocriterioMayor(id);
+    }
 
     @PostMapping("/nuevocriterio")
     public void nuevoCriterio(@RequestBody TipocriterioRequest tipocriterio)

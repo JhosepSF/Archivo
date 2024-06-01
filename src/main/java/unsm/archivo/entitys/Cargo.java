@@ -9,8 +9,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Cargo implements GrantedAuthority
-{
+public class Cargo implements GrantedAuthority{
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	Integer id;

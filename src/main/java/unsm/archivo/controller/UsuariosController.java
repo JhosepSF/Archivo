@@ -32,6 +32,12 @@ public class UsuariosController
     {
         return service.verusuario(id);        
     }
+    
+    @GetMapping("/verusuarioporusername/{username}")
+    public UsuarioDTO findByUsername(@PathVariable String username)
+    {
+        return service.findByUsername(username);       
+    }
 
     @PostMapping("/nuevousuario")
     public void nuevousuario(@RequestBody UsuarioRequest request)

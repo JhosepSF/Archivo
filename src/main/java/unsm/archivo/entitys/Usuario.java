@@ -23,8 +23,9 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "usuarios", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
-public class Usuario implements UserDetails
-{
+public class Usuario implements UserDetails{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
     @GeneratedValue (strategy = GenerationType.AUTO)
@@ -40,12 +41,9 @@ public class Usuario implements UserDetails
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Cargo.class, cascade = CascadeType.MERGE)
 	@JoinTable(name = "Usuario_Cargo", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name="id_cargo"))
 	private Set<Cargo> Cargos;
-	
-	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
 		return Cargos.stream().map(cargo -> new SimpleGrantedAuthority(cargo.getName())).collect(Collectors.toList());
 	}
 	
@@ -106,29 +104,23 @@ public class Usuario implements UserDetails
 		this.password = password;
 	}
 
-	
-
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return	true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

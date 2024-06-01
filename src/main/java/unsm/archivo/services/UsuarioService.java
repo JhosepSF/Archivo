@@ -96,4 +96,24 @@ public class UsuarioService
 	    								cargoName);
 		return dto;
 	}
+	
+	public UsuarioDTO findByUsername (String username) 
+	{
+		Usuario user = repousuario.findByUsername(username)
+				.orElseThrow(() -> new RuntimeException("No se encontro al usuario"));
+		
+		String cargoName = "";
+	    if (user.getCargos() != null && !user.getCargos().isEmpty()) {
+	        Cargo Cargo = user.getCargos().iterator().next();
+	        cargoName = Cargo.getName();
+	    }
+	    
+	    UsuarioDTO dto = new UsuarioDTO(
+	    								user.getId(),
+	    								user.getName(),
+	    								user.getLastname(), 
+	    								user.getAddress(), 
+	    								cargoName);
+		return dto;
+	}
 }
