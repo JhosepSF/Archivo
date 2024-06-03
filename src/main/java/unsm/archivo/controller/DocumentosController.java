@@ -21,7 +21,7 @@ public class DocumentosController
     @Autowired
     DocumentoService service;
 
-    @GetMapping("/verdocumentos")
+    @GetMapping("/verdocumento/")
     public List<DocumentoDTO> verdocumentos()
     {
         return service.verDocumentos();
@@ -33,19 +33,13 @@ public class DocumentosController
         return service.verUnDocumento(id);
     }
 
-    @GetMapping("/verdocumentosporcriterio/{id}")
+    @GetMapping("/verdocumento/criterio/{id}")
     public List<DocumentoDTO> verdocumentosporcriterio(@PathVariable Integer id)
     {
         return service.verDocumentosporCriterio(id);
     }
-
-    @GetMapping("/verdocumentosportipo/{id}")
-    public List<DocumentoDTO> verdocumentosportipo(@PathVariable Integer id)
-    {
-        return service.verDocumentosporTipo(id);
-    }
     
-    @GetMapping("/verdocumentosporcriteriomayor/{id}")
+    @GetMapping("/verdocumento/criteriomayor/{id}")
     public List<DocumentoDTO> verdocumentosporcriterioMayor(@PathVariable Integer id)
     {
         return service.verDocumentosporCriterioMayor(id);

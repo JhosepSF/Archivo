@@ -8,7 +8,6 @@ public class DocumentosRequest
 	String fecha;
 	Integer duracion;
 	String vencimiento;
-	Integer idtipo;
 	Integer idtipocriterio;
 		
 	public String getNrodoc() {
@@ -46,12 +45,6 @@ public class DocumentosRequest
 	}
 	public void setVencimiento(String vencimiento) {
 		this.vencimiento = vencimiento;
-	}
-	public Integer getIdtipo() {
-		return idtipo;
-	}
-	public void setIdtipo(Integer idtipo) {
-		this.idtipo = idtipo;
 	}
 	public Integer getIdtipocriterio() {
 		return idtipocriterio;

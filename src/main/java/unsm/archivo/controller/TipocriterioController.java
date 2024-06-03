@@ -21,19 +21,19 @@ public class TipocriterioController
     @Autowired
     private TipocriterioService tipocriterioService;
 
-    @GetMapping("/tipocriterios")
+    @GetMapping("/vercriterio/tipocriterios")
     public List<Tipocriterio> getTipocriterios()
     {
         return tipocriterioService.getTipocriterios();
     }
 
-    @GetMapping("/tipocriterio/{id}")
+    @GetMapping("/vercriterio/tipocriterio/{id}")
     public Tipocriterio VerUnTipoCriterio(@PathVariable Integer id)
     {
         return tipocriterioService.VerUnTipoCriterio(id);
     }
     
-    @GetMapping("/criteriomayor/{id}")
+    @GetMapping("/vercriterio/criteriomayor/{id}")
     public List<Tipocriterio> getCriterioMayor(@PathVariable Integer id)
     {
     	return tipocriterioService.getTipocriterioMayor(id);

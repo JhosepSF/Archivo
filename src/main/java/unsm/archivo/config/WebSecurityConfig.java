@@ -36,9 +36,12 @@ public class WebSecurityConfig
 					.csrf(csrf -> csrf.disable())
 					.cors(cors -> cors.configurationSource(corsConfigurationSource()))
 					.authorizeHttpRequests(authRequest -> {
-							authRequest.requestMatchers("/auth/**").permitAll();
+							authRequest.requestMatchers(
+										"/auth/**","/documentos/verdocumento/**", 
+										"/tipocriterio/vercriterio/**"
+									).permitAll();
 							authRequest.requestMatchers
-							("/documentos/**", "/tipocriterio/**","/tipodocumento/**","/usuario/**")
+							("/documentos/**", "/tipocriterio/**","/usuario/**")
 							.hasAuthority("ADMINISTRADOR");
 							authRequest.anyRequest().authenticated();
 							})

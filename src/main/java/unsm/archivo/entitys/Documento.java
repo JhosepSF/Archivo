@@ -23,10 +23,6 @@ public class Documento
 	LocalDate vencimiento;
 	
 	@ManyToOne (fetch = FetchType.LAZY)
-	@JoinColumn (name= "idtipo")
-	Tipodoc idtipo;
-	
-	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn (name= "idtipocriterio")
 	Tipocriterio idtipocriterio;
 
@@ -66,13 +62,6 @@ public class Documento
 	}
 	public void setVencimiento(LocalDate vencimiento) {
 		this.vencimiento = vencimiento;
-	}
-	public Tipodoc getIdtipo() 
-	{
-		return idtipo;
-	}
-	public void setIdtipo(Tipodoc idtipodoc) {
-		this.idtipo = idtipodoc;
 	}
 	public Tipocriterio getIdtipocriterio() {
 		return idtipocriterio;
