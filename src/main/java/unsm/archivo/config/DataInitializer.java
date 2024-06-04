@@ -34,6 +34,7 @@ public class DataInitializer
             usuario.setName("Eduardo Abel");
             usuario.setLastname("Padilla Coral");
             usuario.setAddress(" Jirón José Carlos Mariategui n° 123");
+            usuario.setPhone("123456789");
             usuario.setPassword(passwordEncoder.encode("123456"));
             usuario.setCargos(cargos);
             usuarioRepository.save(usuario);

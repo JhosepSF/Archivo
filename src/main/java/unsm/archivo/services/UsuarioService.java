@@ -1,5 +1,6 @@
 package unsm.archivo.services;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -28,7 +29,7 @@ public class UsuarioService
 	@Autowired
     private PasswordEncoder passwordEncoder;
 	
-	public void nuevousuario (UsuarioRequest usuario) 
+	public void nuevousuario (UsuarioRequest usuario) throws IOException 
 	{
 		String encoded = passwordEncoder.encode(usuario.getPassword());
 		
@@ -37,6 +38,7 @@ public class UsuarioService
 		nuevousuario.setName(usuario.getName());
 		nuevousuario.setLastname(usuario.getLastname());
 		nuevousuario.setAddress(usuario.getAddress());
+	    nuevousuario.setPhone(usuario.getPhone());
 		nuevousuario.setPassword(encoded);
 		nuevousuario.setUsername(usuario.getUsername());
 		
@@ -70,7 +72,8 @@ public class UsuarioService
 		    								user.getId(),
 		    								user.getName(),
 		    								user.getLastname(), 
-		    								user.getAddress(), 
+		    								user.getAddress(),
+		    								user.getPhone(),
 		    								cargoName);
 		    usuariosdto.add(dto);
 		}
@@ -89,11 +92,12 @@ public class UsuarioService
 	    }
 	    
 	    UsuarioDTO dto = new UsuarioDTO(
-	    								user.getId(),
-	    								user.getName(),
-	    								user.getLastname(), 
-	    								user.getAddress(), 
-	    								cargoName);
+							    		user.getId(),
+										user.getName(),
+										user.getLastname(), 
+										user.getAddress(),
+										user.getPhone(),
+										cargoName);
 		return dto;
 	}
 	
@@ -109,11 +113,12 @@ public class UsuarioService
 	    }
 	    
 	    UsuarioDTO dto = new UsuarioDTO(
-	    								user.getId(),
-	    								user.getName(),
-	    								user.getLastname(), 
-	    								user.getAddress(), 
-	    								cargoName);
+							    		user.getId(),
+										user.getName(),
+										user.getLastname(), 
+										user.getAddress(),
+										user.getPhone(),
+										cargoName);
 		return dto;
 	}
 }

@@ -1,5 +1,7 @@
 package unsm.archivo.request;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class DocumentosRequest 
 {
 	String nrodoc;
@@ -9,6 +11,7 @@ public class DocumentosRequest
 	Integer duracion;
 	String vencimiento;
 	Integer idtipocriterio;
+	MultipartFile pdf;
 		
 	public String getNrodoc() {
 		return nrodoc;
@@ -52,5 +55,10 @@ public class DocumentosRequest
 	public void setIdtipocriterio(Integer idtipocriterio) {
 		this.idtipocriterio = idtipocriterio;
 	}
-	
+	public MultipartFile getPdf() {
+		return pdf;
+	}
+	public void setPdf(MultipartFile pdf) {
+		this.pdf = pdf;
+	}
 }

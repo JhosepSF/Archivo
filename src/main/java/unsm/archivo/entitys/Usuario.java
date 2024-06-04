@@ -35,6 +35,7 @@ public class Usuario implements UserDetails{
     String name;
     String lastname;
     String address;
+    String phone;
     String username;
     String password;
     
@@ -103,6 +104,14 @@ public class Usuario implements UserDetails{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {
@@ -123,6 +132,4 @@ public class Usuario implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-
-		
 }

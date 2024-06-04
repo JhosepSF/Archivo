@@ -1,5 +1,6 @@
 package unsm.archivo.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class UsuariosController
     }
 
     @PostMapping("/nuevousuario")
-    public void nuevousuario(@RequestBody UsuarioRequest request)
+    public void nuevousuario(@RequestBody UsuarioRequest request) throws IOException
     {
         service.nuevousuario(request);
     }

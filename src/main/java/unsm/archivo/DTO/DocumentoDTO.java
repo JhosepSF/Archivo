@@ -8,7 +8,6 @@ public class DocumentoDTO
 	String fecha;
 	Integer duracion;
 	String vencimiento;
-	String tipodocumento;
 	String tipocriterio;
 	
 	public String getNrodoc() {
@@ -46,12 +45,6 @@ public class DocumentoDTO
 	}
 	public void setVencimiento(String vencimiento) {
 		this.vencimiento = vencimiento;
-	}
-	public String getTipodocumento() {
-		return tipodocumento;
-	}
-	public void setTipodocumento(String tipodocumento) {
-		this.tipodocumento = tipodocumento;
 	}
 	public String getTipocriterio() {
 		return tipocriterio;
