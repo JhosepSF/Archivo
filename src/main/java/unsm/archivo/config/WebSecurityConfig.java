@@ -37,7 +37,8 @@ public class WebSecurityConfig
 					.cors(cors -> cors.configurationSource(corsConfigurationSource()))
 					.authorizeHttpRequests(authRequest -> {
 							authRequest.requestMatchers(
-										"/auth/**","/documentos/verdocumento/**", 
+										"/auth/**","/documentos/verdocumento/**",
+										"/change-password/**",
 										"/tipocriterio/vercriterio/**"
 									).permitAll();
 							authRequest.requestMatchers
