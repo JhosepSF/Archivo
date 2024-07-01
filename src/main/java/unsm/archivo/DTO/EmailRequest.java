@@ -38,6 +38,4 @@ public class EmailRequest {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-	
-	
 }

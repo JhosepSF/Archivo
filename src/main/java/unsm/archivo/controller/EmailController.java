@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import unsm.archivo.DTO.EmailRequest;
+import unsm.archivo.services.EmailService;
 
 
 @RestController
@@ -19,7 +20,7 @@ import unsm.archivo.DTO.EmailRequest;
 public class EmailController {
     
     @Autowired
-    unsm.archivo.services.EmailService emailService;
+    EmailService emailService;
 
     @Value("${spring.mail.username}")
     private String mailFrom;

@@ -18,9 +18,7 @@ import unsm.archivo.DTO.EmailRequest;
 
 @Service
 public class EmailService {
-    
-    
-	
+   
     private JavaMailSender  javaMailSender;
     private TemplateEngine templateEngine;
     

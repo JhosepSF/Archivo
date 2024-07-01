@@ -6,6 +6,7 @@ public class DocumentosRequest
 {
 	String nrodoc;
 	String titulo;
+	String dni;
 	String estado;
 	String fecha;
 	Integer duracion;
@@ -24,6 +25,12 @@ public class DocumentosRequest
 	}
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 	public String getEstado() {
 		return estado;

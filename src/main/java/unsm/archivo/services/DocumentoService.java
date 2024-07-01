@@ -30,14 +30,25 @@ public class DocumentoService
         Documento doc = new Documento();
         doc.setNrodoc(documentosRequest.getNrodoc());
         doc.setTitulo(documentosRequest.getTitulo());
+        doc.setDni(documentosRequest.getDni());
         doc.setEstado(documentosRequest.getEstado());
         doc.setDuracion(documentosRequest.getDuracion());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate fecha = LocalDate.parse(documentosRequest.getFecha(), formatter);
-        doc.setFecha(fecha);
-        LocalDate vencimiento = LocalDate.parse(documentosRequest.getVencimiento(), formatter);
-        doc.setVencimiento(vencimiento);
+
+        if (documentosRequest.getFecha() != null) {
+            LocalDate fecha = LocalDate.parse(documentosRequest.getFecha(), formatter);
+            doc.setFecha(fecha);
+        } else {
+            throw new IllegalArgumentException("Fecha no puede ser nula");
+        }
+
+        if (documentosRequest.getVencimiento() != null) {
+            LocalDate vencimiento = LocalDate.parse(documentosRequest.getVencimiento(), formatter);
+            doc.setVencimiento(vencimiento);
+        } else {
+            throw new IllegalArgumentException("Vencimiento no puede ser nulo");
+        }
 
         Tipocriterio tipocriterio = criterio.findById(documentosRequest.getIdtipocriterio())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Criterio Id:" + documentosRequest.getIdtipocriterio()));
@@ -61,6 +72,7 @@ public class DocumentoService
     		DocumentoDTO documentoDTO = new DocumentoDTO();
     	    documentoDTO.setNrodoc(documento.getNrodoc());
     	    documentoDTO.setTitulo(documento.getTitulo());
+    	    documentoDTO.setDni(documento.getDni());
     	    documentoDTO.setEstado(documento.getEstado());
     	    documentoDTO.setFecha(documento.getFecha().toString());
     	    documentoDTO.setDuracion(documento.getDuracion());
@@ -79,6 +91,7 @@ public class DocumentoService
     	DocumentoDTO documentoDTO = new DocumentoDTO();
 	    documentoDTO.setNrodoc(documento.getNrodoc());
 	    documentoDTO.setTitulo(documento.getTitulo());
+	    documentoDTO.setDni(documento.getDni());
 	    documentoDTO.setEstado(documento.getEstado());
 	    documentoDTO.setFecha(documento.getFecha().toString());
 	    documentoDTO.setDuracion(documento.getDuracion());
@@ -107,6 +120,7 @@ public class DocumentoService
     		DocumentoDTO documentoDTO = new DocumentoDTO();
     	    documentoDTO.setNrodoc(documento.getNrodoc());
     	    documentoDTO.setTitulo(documento.getTitulo());
+    	    documentoDTO.setDni(documento.getDni());
     	    documentoDTO.setEstado(documento.getEstado());
     	    documentoDTO.setFecha(documento.getFecha().toString());
     	    documentoDTO.setDuracion(documento.getDuracion());
@@ -135,6 +149,7 @@ public class DocumentoService
         		DocumentoDTO documentoDTO = new DocumentoDTO();
         	    documentoDTO.setNrodoc(documento.getNrodoc());
         	    documentoDTO.setTitulo(documento.getTitulo());
+        	    documentoDTO.setDni(documento.getDni());
         	    documentoDTO.setEstado(documento.getEstado());
         	    documentoDTO.setFecha(documento.getFecha().toString());
         	    documentoDTO.setDuracion(documento.getDuracion());

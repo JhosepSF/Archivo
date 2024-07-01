@@ -4,6 +4,7 @@ public class DocumentoDTO
 {
 	String nrodoc;
 	String titulo;
+	String dni;
 	String estado;
 	String fecha;
 	Integer duracion;
@@ -21,6 +22,12 @@ public class DocumentoDTO
 	}
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 	public String getEstado() {
 		return estado;
