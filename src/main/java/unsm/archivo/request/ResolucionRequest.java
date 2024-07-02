@@ -2,15 +2,14 @@ package unsm.archivo.request;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class DocumentosRequest 
+public class ResolucionRequest 
 {
 	String nrodoc;
 	String titulo;
-	String dni;
 	String estado;
 	String fecha;
 	Integer duracion;
-	String vencimiento;
+	String tipoResolucion;
 	Integer idtipocriterio;
 	MultipartFile pdf;
 		
@@ -25,12 +24,6 @@ public class DocumentosRequest
 	}
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
-	}
-	public String getDni() {
-		return dni;
-	}
-	public void setDni(String dni) {
-		this.dni = dni;
 	}
 	public String getEstado() {
 		return estado;
@@ -50,11 +43,11 @@ public class DocumentosRequest
 	public void setDuracion(Integer duracion) {
 		this.duracion = duracion;
 	}
-	public String getVencimiento() {
-		return vencimiento;
+	public String getTipoResolucion() {
+		return tipoResolucion;
 	}
-	public void setVencimiento(String vencimiento) {
-		this.vencimiento = vencimiento;
+	public void setTipoResolucion(String tipoResolucion) {
+		this.tipoResolucion = tipoResolucion;
 	}
 	public Integer getIdtipocriterio() {
 		return idtipocriterio;

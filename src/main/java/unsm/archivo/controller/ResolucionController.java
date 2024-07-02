@@ -15,33 +15,33 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import unsm.archivo.DTO.DocumentoDTO;
-import unsm.archivo.entitys.Documento;
-import unsm.archivo.request.DocumentosRequest;
-import unsm.archivo.services.DocumentoService;
+import unsm.archivo.DTO.ResolucionDTO;
+import unsm.archivo.entitys.Resolucion;
+import unsm.archivo.request.ResolucionRequest;
+import unsm.archivo.services.ResolucionService;
 
 @RestController
-@RequestMapping("/documentos")
-public class DocumentosController 
+@RequestMapping("/resolucion")
+public class ResolucionController 
 {
     @Autowired
-    DocumentoService service;
+    ResolucionService service;
 
-    @GetMapping("/verdocumento/")
-    public List<DocumentoDTO> verdocumentos()
+    @GetMapping("/verresolucion/")
+    public List<ResolucionDTO> verResoluciones()
     {
         return service.verDocumentos();
     }
 
-    @GetMapping("/verdocumento/{id}")
-    public DocumentoDTO verdocumento(@PathVariable String id)
+    @GetMapping("/verresolucion/{id}")
+    public ResolucionDTO verResolucion(@PathVariable String id)
     {
         return service.verUnDocumento(id);
     }
     
-    @GetMapping("/verdocumento/{id}/pdf")
-    public ResponseEntity<byte[]> verDocumentoPdf(@PathVariable String id) {
-        Documento documento = service.verDocumentoPdf(id);
+    @GetMapping("/verresolucion/{id}/pdf")
+    public ResponseEntity<byte[]> verResolucionPdf(@PathVariable String id) {
+        Resolucion documento = service.verDocumentoPdf(id);
         byte[] pdfContent = documento.getPdf();
 
         HttpHeaders headers = new HttpHeaders();
@@ -50,20 +50,20 @@ public class DocumentosController
         return new ResponseEntity<>(pdfContent, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/verdocumento/criterio/{id}")
-    public List<DocumentoDTO> verdocumentosporcriterio(@PathVariable Integer id)
+    @GetMapping("/verresolucion/criterio/{id}")
+    public List<ResolucionDTO> verResolucionesPorCriterio(@PathVariable Integer id)
     {
         return service.verDocumentosporCriterio(id);
     }
     
-    @GetMapping("/verdocumento/criteriomayor/{id}")
-    public List<DocumentoDTO> verdocumentosporcriterioMayor(@PathVariable Integer id)
+    @GetMapping("/verresolucion/criteriomayor/{id}")
+    public List<ResolucionDTO> verResolucionesPorCriterioMayor(@PathVariable Integer id)
     {
         return service.verDocumentosporCriterioMayor(id);
     }
 
-    @PostMapping("/nuevodocumento")
-    public void nuevoDocumento(@ModelAttribute DocumentosRequest request) throws IOException
+    @PostMapping("/nuevaresolucion")
+    public void nuevaResolucion(@ModelAttribute ResolucionRequest request) throws IOException
     {
         service.nuevoDocumento(request);
     }    

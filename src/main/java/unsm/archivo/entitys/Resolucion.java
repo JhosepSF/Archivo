@@ -11,14 +11,13 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Documento 
+public class Resolucion
 {
 	@Id
 	String nrodoc;
 	
 	@Column
 	String titulo;
-	String dni;
 	String estado;
 	LocalDate fecha;
 	Integer duracion;
@@ -43,12 +42,6 @@ public class Documento
 	}
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
-	}
-	public String getDni() {
-		return dni;
-	}
-	public void setDni(String dni) {
-		this.dni = dni;
 	}
 	public String getEstado() {
 		return estado;
