@@ -2,24 +2,25 @@ package unsm.archivo.DTO;
 
 public class GradoTituloDTO 
 {
-	String nrodoc;
-	String titulo;
+	Integer idgradotitulo;
+	String nombreapellido;
 	String dni;
+	String fechaexpedicion;
+	String facultadescuela;
+	String gradotitulo;
     String idresolucion;
-    String facultad;
-    String escuela;
-
-    public String getNrodoc() {
-		return nrodoc;
+    
+	public Integer getIdgradotitulo() {
+		return idgradotitulo;
 	}
-	public void setNrodoc(String nrodoc) {
-		this.nrodoc = nrodoc;
+	public void setIdgradotitulo(Integer idgradotitulo) {
+		this.idgradotitulo = idgradotitulo;
 	}
-	public String getTitulo() {
-		return titulo;
+	public String getNombreapellido() {
+		return nombreapellido;
 	}
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setNombreapellido(String nombreapellido) {
+		this.nombreapellido = nombreapellido;
 	}
 	public String getDni() {
 		return dni;
@@ -27,22 +28,28 @@ public class GradoTituloDTO
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
+	public String getFacultadescuela() {
+		return facultadescuela;
+	}
+	public void setFacultadescuela(String facultadescuela) {
+		this.facultadescuela = facultadescuela;
+	}
+	public String getGradotitulo() {
+		return gradotitulo;
+	}
+	public void setGradotitulo(String gradotitulo) {
+		this.gradotitulo = gradotitulo;
+	}
 	public String getIdresolucion() {
 		return idresolucion;
 	}
 	public void setIdresolucion(String idresolucion) {
 		this.idresolucion = idresolucion;
 	}
-	public String getFacultad() {
-		return facultad;
+	public String getFechaexpedicion() {
+		return fechaexpedicion;
 	}
-	public void setFacultad(String facultad) {
-		this.facultad = facultad;
-	}
-	public String getEscuela() {
-		return escuela;
-	}
-	public void setEscuela(String escuela) {
-		this.escuela = escuela;
+	public void setFechaexpedicion(String fechaexpedicion) {
+		this.fechaexpedicion = fechaexpedicion;
 	}
 }

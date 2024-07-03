@@ -4,30 +4,37 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class GradoTituloRequest 
 {
-    String nrodoc;
-	String titulo;
+	String nombreapellido;
 	String dni;
+	String fechaexpedicion;
+	String facultadescuela;
+	String gradotitulo;
     String idresolucion;
-    String escuela;
-    String facultad;
 	MultipartFile pdf;
-	public String getNrodoc() {
-		return nrodoc;
+	
+	public String getNombreapellido() {
+		return nombreapellido;
 	}
-	public void setNrodoc(String nrodoc) {
-		this.nrodoc = nrodoc;
-	}
-	public String getTitulo() {
-		return titulo;
-	}
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setNombreapellido(String nombreapellido) {
+		this.nombreapellido = nombreapellido;
 	}
 	public String getDni() {
 		return dni;
 	}
 	public void setDni(String dni) {
 		this.dni = dni;
+	}
+	public String getFacultadescuela() {
+		return facultadescuela;
+	}
+	public void setFacultadescuela(String facultadescuela) {
+		this.facultadescuela = facultadescuela;
+	}
+	public String getGradotitulo() {
+		return gradotitulo;
+	}
+	public void setGradotitulo(String gradotitulo) {
+		this.gradotitulo = gradotitulo;
 	}
 	public String getIdresolucion() {
 		return idresolucion;
@@ -41,16 +48,10 @@ public class GradoTituloRequest
 	public void setPdf(MultipartFile pdf) {
 		this.pdf = pdf;
 	}
-	public String getEscuela() {
-		return escuela;
+	public String getFechaexpedicion() {
+		return fechaexpedicion;
 	}
-	public void setEscuela(String escuela) {
-		this.escuela = escuela;
-	}
-	public String getFacultad() {
-		return facultad;
-	}
-	public void setFacultad(String facultad) {
-		this.facultad = facultad;
+	public void setFechaexpedicion(String fechaexpedicion) {
+		this.fechaexpedicion = fechaexpedicion;
 	}
 }

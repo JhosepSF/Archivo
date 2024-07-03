@@ -1,6 +1,8 @@
 package unsm.archivo.services;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,32 +18,44 @@ import unsm.archivo.repository.ResolucionRepo;
 import unsm.archivo.request.GradoTituloRequest;
 
 @Service
-public class GradoTituloService 
-{
+public class GradoTituloService {
+    
     @Autowired
     GradoTituloRepo gradorepo;
 
     @Autowired
     ResolucionRepo resolucionrepo;
 
-    public void nuevoDocumento (GradoTituloRequest request) throws IOException
-    {
+    public void nuevoDocumento(GradoTituloRequest request) throws IOException {
         GradoTitulo grado = new GradoTitulo();
-        grado.setNrodoc(request.getNrodoc());
+        grado.setNombreapellido(request.getNombreapellido());
         grado.setDni(request.getDni());
-        grado.setEscuela(request.getEscuela());
-        grado.setFacultad(request.getFacultad());
-
+        grado.setFacultadescuela(request.getFacultadescuela()); 
+        grado.setGradotitulo(request.getGradotitulo()); 
+        
         Resolucion resolucion = resolucionrepo.findById(request.getIdresolucion())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid Resolucion Id:" + request.getIdresolucion()));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Resolucion Id: " + request.getIdresolucion()));
         grado.setIdresolucion(resolucion);
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+        if (request.getFechaexpedicion() != null) 
+        {
+            LocalDate fecha = LocalDate.parse(request.getFechaexpedicion(), formatter);
+            grado.setFechaexpedicion(fecha);
+        } 
+        
+        else 
+        {
+            throw new IllegalArgumentException("Fecha no puede ser nula");
+        }
+        
         MultipartFile pdfFile = request.getPdf();
         if (pdfFile != null && !pdfFile.isEmpty()) {
-            grado.setPdf(pdfFile.getBytes());
+            grado.setPdf(pdfFile.getBytes()); 
         }
 
-        gradorepo.save(grado);
+        gradorepo.save(grado); 
     }
     
     public List<GradoTituloDTO> verDocumentos() {
@@ -50,10 +64,12 @@ public class GradoTituloService
 
         for (GradoTitulo documento : documentos) {
             GradoTituloDTO documentoDTO = new GradoTituloDTO();
-            documentoDTO.setNrodoc(documento.getNrodoc());
+            documentoDTO.setIdgradotitulo(documento.getIdgradotitulo());
+            documentoDTO.setNombreapellido(documento.getNombreapellido());
             documentoDTO.setDni(documento.getDni());
-            documentoDTO.setEscuela(documento.getEscuela());
-            documentoDTO.setFacultad(documento.getFacultad());
+            documentoDTO.setFechaexpedicion(documento.getFechaexpedicion().toString());
+            documentoDTO.setFacultadescuela(documento.getFacultadescuela());
+            documentoDTO.setGradotitulo(documento.getGradotitulo());
             documentoDTO.setIdresolucion(documento.getIdresolucion().getNrodoc());
 
             documentosdto.add(documentoDTO);
@@ -61,23 +77,26 @@ public class GradoTituloService
         return documentosdto;
     }
 
-    public GradoTituloDTO verUnDocumento(String doc) {
-        GradoTitulo documento = gradorepo.findById(doc)
+    public GradoTituloDTO verUnDocumento(Integer idgradotitulo) {
+        GradoTitulo documento = gradorepo.findById(idgradotitulo)
                 .orElseThrow(() -> new RuntimeException("No se encontró el documento"));
 
         GradoTituloDTO documentoDTO = new GradoTituloDTO();
-        documentoDTO.setNrodoc(documento.getNrodoc());
+        documentoDTO.setIdgradotitulo(documento.getIdgradotitulo()); 
+        documentoDTO.setNombreapellido(documento.getNombreapellido()); 
         documentoDTO.setDni(documento.getDni());
-        documentoDTO.setEscuela(documento.getEscuela());
-        documentoDTO.setFacultad(documento.getFacultad());
+        documentoDTO.setFechaexpedicion(documento.getFechaexpedicion().toString());
+        documentoDTO.setFacultadescuela(documento.getFacultadescuela()); 
+        documentoDTO.setGradotitulo(documento.getGradotitulo()); 
         documentoDTO.setIdresolucion(documento.getIdresolucion().getNrodoc());
 
         return documentoDTO;
     }
 
-    public GradoTitulo verDocumentoPdf(String id) {
-        GradoTitulo documento = gradorepo.findById(id)
+    public GradoTitulo verDocumentoPdf(Integer idgradotitulo) {
+        GradoTitulo documento = gradorepo.findById(idgradotitulo)
                 .orElseThrow(() -> new RuntimeException("No se encontró el documento"));
+
         return documento;
     }
 
@@ -89,10 +108,12 @@ public class GradoTituloService
 
         for (GradoTitulo documento : documentos) {
             GradoTituloDTO documentoDTO = new GradoTituloDTO();
-            documentoDTO.setNrodoc(documento.getNrodoc());
+            documentoDTO.setIdgradotitulo(documento.getIdgradotitulo()); 
+            documentoDTO.setNombreapellido(documento.getNombreapellido()); 
             documentoDTO.setDni(documento.getDni());
-            documentoDTO.setEscuela(documento.getEscuela());
-            documentoDTO.setFacultad(documento.getFacultad());
+            documentoDTO.setFechaexpedicion(documento.getFechaexpedicion().toString());
+            documentoDTO.setFacultadescuela(documento.getFacultadescuela()); 
+            documentoDTO.setGradotitulo(documento.getGradotitulo());
             documentoDTO.setIdresolucion(documento.getIdresolucion().getNrodoc());
 
             documentosdto.add(documentoDTO);

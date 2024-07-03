@@ -1,27 +1,30 @@
 package unsm.archivo.entitys;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "GradoTitulo", uniqueConstraints = {@UniqueConstraint(columnNames = {"dni"})})
 public class GradoTitulo
 {
     @Id
-	String nrodoc;
+    @GeneratedValue (strategy = GenerationType.AUTO)
+	Integer idgradotitulo;
 	
 	@Column
-	String titulo;
+	String nombreapellido;
 	String dni;
-	String facultad;
-	String escuela;
+	LocalDate fechaexpedicion;
+	String facultadescuela;
+	String gradotitulo;
 	
 	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn (name= "idresolucion")
@@ -31,20 +34,20 @@ public class GradoTitulo
 	@Column(name = "pdf", columnDefinition = "LONGBLOB")
 	byte[] pdf;
 
-	public String getNrodoc() {
-		return nrodoc;
+	public Integer getIdgradotitulo() {
+		return idgradotitulo;
 	}
 
-	public void setNrodoc(String nrodoc) {
-		this.nrodoc = nrodoc;
+	public void setIdgradotitulo(Integer idgradotitulo) {
+		this.idgradotitulo = idgradotitulo;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getNombreapellido() {
+		return nombreapellido;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setNombreapellido(String nombreapellido) {
+		this.nombreapellido = nombreapellido;
 	}
 
 	public String getDni() {
@@ -53,6 +56,22 @@ public class GradoTitulo
 
 	public void setDni(String dni) {
 		this.dni = dni;
+	}
+
+	public String getFacultadescuela() {
+		return facultadescuela;
+	}
+
+	public void setFacultadescuela(String facultadescuela) {
+		this.facultadescuela = facultadescuela;
+	}
+
+	public String getGradotitulo() {
+		return gradotitulo;
+	}
+
+	public void setGradotitulo(String gradotitulo) {
+		this.gradotitulo = gradotitulo;
 	}
 
 	public Resolucion getIdresolucion() {
@@ -71,19 +90,11 @@ public class GradoTitulo
 		this.pdf = pdf;
 	}
 
-	public String getFacultad() {
-		return facultad;
+	public LocalDate getFechaexpedicion() {
+		return fechaexpedicion;
 	}
 
-	public void setFacultad(String facultad) {
-		this.facultad = facultad;
-	}
-
-	public String getEscuela() {
-		return escuela;
-	}
-
-	public void setEscuela(String escuela) {
-		this.escuela = escuela;
+	public void setFechaexpedicion(LocalDate fechaexpedicion) {
+		this.fechaexpedicion = fechaexpedicion;
 	}
 }

@@ -32,18 +32,18 @@ public class GradoTituloController {
     }
 
     @GetMapping("/vergradotitulo/{id}")
-    public GradoTituloDTO verGradoTitulo(@PathVariable String id) {
+    public GradoTituloDTO verGradoTitulo(@PathVariable Integer id) {
         return service.verUnDocumento(id);
     }
 
     @GetMapping("/vergradotitulo/{id}/pdf")
-    public ResponseEntity<byte[]> verGradoTituloPdf(@PathVariable String id) {
+    public ResponseEntity<byte[]> verGradoTituloPdf(@PathVariable Integer id) {
         GradoTitulo documento = service.verDocumentoPdf(id);
         byte[] pdfContent = documento.getPdf();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
-        headers.setContentDispositionFormData("inline", documento.getNrodoc() + ".pdf");
+        headers.setContentDispositionFormData("inline", documento.getIdgradotitulo() + ".pdf");
         return new ResponseEntity<>(pdfContent, headers, HttpStatus.OK);
     }
 
