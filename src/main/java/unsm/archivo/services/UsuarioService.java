@@ -121,4 +121,17 @@ public class UsuarioService
 										cargoName);
 		return dto;
 	}
+	
+	public boolean cambiarContrasena(String username, String newPassword)
+	{
+		Usuario user = repousuario.findByUsername(username)
+				.orElseThrow(()->new RuntimeException("No se encontro al usuario"));
+        if (user != null) {
+            user.setPassword(passwordEncoder.encode(newPassword));
+            repousuario.save(user);
+            return true;
+        }
+        
+        return false;
+    }
 }

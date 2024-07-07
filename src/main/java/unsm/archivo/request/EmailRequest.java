@@ -1,4 +1,4 @@
-package unsm.archivo.DTO;
+package unsm.archivo.request;
 
 public class EmailRequest {
 	

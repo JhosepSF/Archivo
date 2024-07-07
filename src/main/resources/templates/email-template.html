@@ -2,66 +2,75 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Restablecer Contraseña</title>
+    <title>Restablecimiento de Contraseña</title>
     <style>
-        .email-container {
+        body {
             font-family: Arial, sans-serif;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
+            background-color: #f6f6f6;
+        }
+        .container {
+            width: 100%;
             max-width: 600px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .email-header {
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            border-radius: 10px 10px 0 0;
-        }
-        .email-body {
+            margin: 0 auto;
+            background-color: #ffffff;
             padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .email-footer {
+        .header {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px 0;
             text-align: center;
-            padding: 10px;
-            border-top: 1px solid #ddd;
-            font-size: 12px;
-            color: #777;
         }
-        .btn-reset {
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .content p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333333;
+        }
+        .button {
             display: inline-block;
-            padding: 15px 30px;
+            padding: 10px 20px;
             margin-top: 20px;
-            background-color: #007bff;
-            color: white;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #4CAF50;
             text-decoration: none;
             border-radius: 5px;
-            font-size: 16px;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
-        .btn-reset:hover {
-            background-color: #0056b3;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		.button:hover {
+            background-color: #45a049;
+        }
+		.ii a[href] {
+		    color: #ffffff;
+		}
+        .footer {
+            margin-top: 20px;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #999999;
         }
     </style>
 </head>
 <body>
-    <div class="email-container">
-        <div class="email-header">
-            <h1>Restablecer Contraseña</h1>
+    <div class="container">
+        <div class="header">
+            <h1>Restablecimiento de Contraseña</h1>
         </div>
-        <div class="email-body">
-            <h3><span>Hola, </span><span th:text="${username}"></span></h3>
-            <p>Hemos recibido una solicitud para restablecer la contraseña de tu cuenta. Si no solicitaste este cambio, puedes ignorar este correo.</p>
-            <p>Para restablecer tu contraseña, haz clic en el siguiente enlace:</p>
-            <a th:href="@{${url}}" class="btn-reset"><span>Restablecer Contraseña</span></h3></a>
-            <p>Este enlace caducará en 24 horas.</p>
-            <p>Gracias,<br>El equipo de soporte</p>
+        <div class="content">
+            <p>Hola <span th:text="${username}"></span>,</p>
+            <p>Hemos recibido una solicitud para restablecer tu contraseña. Haz clic en el siguiente botón para proceder:</p>
+            <a class="button" th:href="${url}">Restablecer Contraseña</a>
+            <p>Si no solicitaste este cambio, puedes ignorar este correo.</p>
         </div>
-        <div class="email-footer">
-            <p>Si tienes algún problema, contacta con nosotros en support@minimarketjr.com.</p>
+        <div class="footer">
+            <p>&copy; 2024 Archivo Central Universidad Nacional de San Martin - Todos los derechos reservados.</p>
         </div>
     </div>
 </body>

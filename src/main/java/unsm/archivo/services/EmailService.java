@@ -13,12 +13,12 @@ import org.thymeleaf.context.Context;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import unsm.archivo.DTO.EmailRequest;
+import unsm.archivo.request.EmailRequest;
 
 @Service
 public class EmailService {
    
-    private JavaMailSender  javaMailSender;
+    private JavaMailSender javaMailSender;
     private TemplateEngine templateEngine;
     
     public EmailService(JavaMailSender javaMailSender, TemplateEngine templateEngine) {
@@ -26,7 +26,6 @@ public class EmailService {
         this.templateEngine = templateEngine;
     }
 
-    
     public void sendEmail(EmailRequest request) {
     	MimeMessage message = javaMailSender.createMimeMessage();
     	try {
@@ -34,7 +33,7 @@ public class EmailService {
     		Context context = new Context();
     		Map<String, Object> model = new HashMap<>();
     		model.put("username", request.getUsername());
-    		model.put("url", "http://localhost:8080/index");
+    		model.put("url", "http://localhost:5173/newpassword?emailTo=" + request.getMailTo());
     		context.setVariables(model);
     		String htmlText = templateEngine.process("email-template", context);
     		helper.setFrom(request.getMailFrom());
