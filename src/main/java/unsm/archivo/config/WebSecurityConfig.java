@@ -45,7 +45,12 @@ public class WebSecurityConfig
 							.hasAuthority("ADMINISTRADOR");
 							authRequest.anyRequest().authenticated();
 							})
-					
+					.formLogin(login -> login	
+						.loginPage("http://localhost:5173/login")
+						.defaultSuccessUrl("http://localhost:5173/paginaprincipal")
+						.failureUrl("http://localhost:5173/login?error=true")
+						.permitAll()
+						)
 					.sessionManagement(sessionManager -> sessionManager
 							.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
 					.authenticationProvider(authProvider)
