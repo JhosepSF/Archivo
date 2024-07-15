@@ -13,10 +13,11 @@ services:
       - archivo-network
     depends_on:
       - mysql
+    entrypoint: ["sh", "-c", "while ! nc -z mysql 3306; do sleep 1; done; java -jar /root/target/archivo-0.0.1-SNAPSHOT.jar"]
 
   mysql:
     image: mysql
-    container_name: mysql-database
+    container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: archivo
@@ -25,9 +26,9 @@ services:
     ports:
       - "3307:3306"
     networks:
-    - archivo-network
+      - archivo-network
     volumes:
-    - mysql-volume:/var/lib/mysql
+      - mysql-volume:/var/lib/mysql
 
 networks:
   archivo-network:
