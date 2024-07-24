@@ -25,7 +25,7 @@ import unsm.archivo.services.PosgradoService;
 public class PosgradoController 
 {
     @Autowired
-    private PosgradoService service;
+    PosgradoService service;
 
     @GetMapping("/verposgrados/")
     public List<PosgradoDTO> verDocumentos() {

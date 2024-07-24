@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import unsm.archivo.DTO.PosgradoDTO;
@@ -16,6 +17,7 @@ import unsm.archivo.repository.PosgradoRepo;
 import unsm.archivo.repository.ResolucionRepo;
 import unsm.archivo.request.PosgradoRequest;
 
+@Service
 public class PosgradoService 
 {
     @Autowired
