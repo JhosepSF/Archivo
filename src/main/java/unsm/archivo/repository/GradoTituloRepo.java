@@ -9,6 +9,5 @@ import unsm.archivo.entitys.Resolucion;
 
 public interface GradoTituloRepo extends JpaRepository<GradoTitulo, Integer>
 {
-	GradoTitulo findByDni(String dni);
 	List<GradoTitulo> findByIdresolucion(Resolucion resolucion);
 }

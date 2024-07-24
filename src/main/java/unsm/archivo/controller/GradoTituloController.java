@@ -22,7 +22,8 @@ import unsm.archivo.services.GradoTituloService;
 
 @RestController
 @RequestMapping("/gradotitulos")
-public class GradoTituloController {
+public class GradoTituloController 
+{
     @Autowired
     GradoTituloService service;
 
