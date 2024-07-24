@@ -31,6 +31,7 @@ public class PosgradoService
         Posgrado posgrado = new Posgrado();
         posgrado.setNombreapellido(request.getNombreapellido());
         posgrado.setDni(request.getDni());
+        posgrado.setMaestriadoctorado(request.getMaestriadoctorado());
         
         Resolucion resolucion = resolucionrepo.findById(request.getIdresolucion())
                .orElseThrow(() -> new IllegalArgumentException("Invalid Resolucion Id: " + request.getIdresolucion()));
