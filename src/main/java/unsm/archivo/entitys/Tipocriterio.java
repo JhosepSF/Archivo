@@ -18,7 +18,7 @@ public class Tipocriterio
 	@Column
 	String criteryname;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "subcriteryid")
     Tipocriterio subcriteryid;
 
