@@ -158,8 +158,18 @@ public class ResolucionService
     public List<ResolucionDTO> verDocumentosporCriterioMayor(Integer idcriterio) {
         Tipocriterio tipocriterio = criterio.findById(idcriterio)
                 .orElseThrow(() -> new RuntimeException("No se encontro el criterio"));
-
+        
         List<Tipocriterio> subcriterios = criterio.findBySubcriteryid(tipocriterio);
+        List<Tipocriterio> newSubcriterios = new ArrayList<>();
+
+        for (Tipocriterio subcriterio : subcriterios) 
+        {
+            List<Tipocriterio> subsubcriterios = criterio.findBySubcriteryid(subcriterio);
+            newSubcriterios.addAll(subsubcriterios);
+        }
+
+        subcriterios.addAll(newSubcriterios);
+        
         List<Resolucion> documentos = new ArrayList<>();
         List<ResolucionDTO> documentosdto = new ArrayList<>();
 
