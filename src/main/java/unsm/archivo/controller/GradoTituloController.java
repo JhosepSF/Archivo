@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import unsm.archivo.DTO.GradoTituloDTO;
 import unsm.archivo.entitys.GradoTitulo;
@@ -27,9 +31,13 @@ public class GradoTituloController
     @Autowired
     GradoTituloService service;
 
-    @GetMapping("/vergradotitulo/")
-    public List<GradoTituloDTO> verGradoTitulos() {
-        return service.verDocumentos();
+    @GetMapping("/vergradotitulo")
+    public Page<GradoTituloDTO> verGradoTitulos(
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        return service.verDocumentos(pageable);
     }
 
     @GetMapping("/vergradotitulo/{id}")
