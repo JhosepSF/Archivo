@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -58,11 +60,9 @@ public class GradoTituloService {
         gradorepo.save(grado); 
     }
     
-    public List<GradoTituloDTO> verDocumentos() {
-        List<GradoTitulo> documentos = gradorepo.findAll();
-        List<GradoTituloDTO> documentosdto = new ArrayList<>();
-
-        for (GradoTitulo documento : documentos) {
+    public Page<GradoTituloDTO> verDocumentos(Pageable pageable) {
+        Page<GradoTitulo> documentos = gradorepo.findAll(pageable);
+        return documentos.map(documento -> {
             GradoTituloDTO documentoDTO = new GradoTituloDTO();
             documentoDTO.setIdgradotitulo(documento.getIdgradotitulo());
             documentoDTO.setNombreapellido(documento.getNombreapellido());
@@ -71,10 +71,8 @@ public class GradoTituloService {
             documentoDTO.setFacultadescuela(documento.getFacultadescuela());
             documentoDTO.setGradotitulo(documento.getGradotitulo());
             documentoDTO.setIdresolucion(documento.getIdresolucion().getNrodoc());
-
-            documentosdto.add(documentoDTO);
-        }
-        return documentosdto;
+            return documentoDTO;
+        });
     }
 
     public GradoTituloDTO verUnDocumento(Integer idgradotitulo) {
