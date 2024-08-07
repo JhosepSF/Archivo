@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -61,34 +63,31 @@ public class ResolucionService
         documentorepo.save(doc);
     }
     
-    public List<ResolucionDTO> verDocumentos() {
-        List<Resolucion> documentos = documentorepo.findAll();
-        List<ResolucionDTO> documentosdto = new ArrayList<>();
+    public Page<ResolucionDTO> verDocumentos(Pageable pageable) {
+    Page<Resolucion> documentos = documentorepo.findAll(pageable);
+    return documentos.map(documento -> {
+        ResolucionDTO documentoDTO = new ResolucionDTO();
+        documentoDTO.setNrodoc(documento.getNrodoc());
+        documentoDTO.setTitulo(documento.getTitulo());
+        documentoDTO.setEstado(documento.getEstado());
+        documentoDTO.setFecha(documento.getFecha().toString());
 
-        for (Resolucion documento : documentos) {
-        	ResolucionDTO documentoDTO = new ResolucionDTO();
-            documentoDTO.setNrodoc(documento.getNrodoc());
-            documentoDTO.setTitulo(documento.getTitulo());
-            documentoDTO.setEstado(documento.getEstado());
-            documentoDTO.setFecha(documento.getFecha().toString());
-            
-            if (documento.getDuracion() != null) {
-                documentoDTO.setDuracion(documento.getDuracion());
-            } else {
-                documentoDTO.setDuracion(0);
-            }
-            
-            if (documento.getVencimiento() != null) {
-                documentoDTO.setVencimiento(documento.getVencimiento().toString());
-            } else {
-                documentoDTO.setVencimiento("Permanente");
-            }
-            
-            documentoDTO.setTipocriterio(documento.getIdtipocriterio().getCriteryname());
-            documentosdto.add(documentoDTO);
+        if (documento.getDuracion() != null) {
+            documentoDTO.setDuracion(documento.getDuracion());
+        } else {
+            documentoDTO.setDuracion(0);
         }
-        return documentosdto;
-    }
+
+        if (documento.getVencimiento() != null) {
+            documentoDTO.setVencimiento(documento.getVencimiento().toString());
+        } else {
+            documentoDTO.setVencimiento("Permanente");
+        }
+
+        documentoDTO.setTipocriterio(documento.getIdtipocriterio().getCriteryname());
+        return documentoDTO;
+    });
+}
 
     public ResolucionDTO verUnDocumento(String doc) {
     	Resolucion documento = documentorepo.findById(doc)
